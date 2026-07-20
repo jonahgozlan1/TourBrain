@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TourbaseMark } from "@/components/brand/TourbaseMark";
 import { UserMenu, type UserMenuProps } from "@/components/layout/UserMenu";
 
 const links = [
@@ -18,9 +19,13 @@ export function AppNav({ user }: { user: UserMenuProps }) {
       <div className="grid h-[4.5rem] w-full grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8">
         <Link
           href="/tour"
-          className="justify-self-start font-display text-[1.35rem] tracking-tight text-[var(--ink)]"
+          aria-label="Tourbase"
+          className="justify-self-start flex items-center gap-2 text-[var(--ink)]"
         >
-          Tourbase
+          <TourbaseMark className="h-7 w-7 sm:h-6 sm:w-6" />
+          <span className="hidden font-display text-[1.35rem] tracking-tight sm:inline">
+            Tourbase
+          </span>
         </Link>
         <nav
           className="flex rounded-[var(--radius-sm)] bg-[var(--ink-soft)] p-1"

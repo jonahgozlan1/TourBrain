@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TourbaseMark } from "@/components/brand/TourbaseMark";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -68,6 +69,7 @@ export default async function HomePage() {
       <div aria-hidden className="brand-atmosphere" />
       <div className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col items-center px-6 py-12 text-center sm:py-16">
         <div className="fade-up flex flex-col items-center">
+          <TourbaseMark className="mb-5 h-12 w-12 text-[var(--ink)] sm:mb-6 sm:h-14 sm:w-14" />
           <p className="font-display text-5xl leading-[1.05] tracking-tight text-[var(--ink)] sm:text-6xl sm:leading-[1.02]">
             Tourbase
           </p>

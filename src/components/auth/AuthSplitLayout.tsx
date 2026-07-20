@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TourbaseMark } from "@/components/brand/TourbaseMark";
 
 const MOCK_SHOWS = [
   { city: "Chicago", venue: "The Riviera", date: "Jul 19", status: "2 missing" },
@@ -80,8 +81,9 @@ export function AuthSplitLayout({
           <div className="text-center">
             <Link
               href="/"
-              className="inline-block font-display text-2xl text-[var(--ink)]"
+              className="inline-flex items-center gap-2 font-display text-2xl text-[var(--ink)]"
             >
+              <TourbaseMark className="h-7 w-7" />
               Tourbase
             </Link>
             <h1 className="mt-8 font-display text-2xl tracking-tight text-[var(--ink)] sm:text-[1.75rem]">
