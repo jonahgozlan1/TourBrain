@@ -5,7 +5,7 @@ export function SchemaSetupNotice() {
         Database setup needed
       </h1>
       <p className="text-[var(--muted)]">
-        Your Supabase project is connected, but Loadin tables are missing or
+        Your Supabase project is connected, but Tourbase tables are missing or
         incomplete.
       </p>
       <ol className="list-decimal space-y-2 pl-5 text-sm text-[var(--ink)]">

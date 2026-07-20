@@ -15,15 +15,15 @@ export function AppNav({ user }: { user: UserMenuProps }) {
 
   return (
     <header className="sticky top-0 z-20 bg-[var(--surface-glass)] backdrop-blur-md">
-      <div className="mx-auto grid h-[3.75rem] max-w-3xl grid-cols-[1fr_auto_1fr] items-center px-4">
+      <div className="grid h-[4.5rem] w-full grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8">
         <Link
           href="/tour"
-          className="justify-self-start font-display text-[1.125rem] tracking-tight text-[var(--ink)]"
+          className="justify-self-start font-display text-[1.35rem] tracking-tight text-[var(--ink)]"
         >
-          Loadin
+          Tourbase
         </Link>
         <nav
-          className="flex rounded-[var(--radius-sm)] bg-[var(--ink-soft)] p-0.5"
+          className="flex rounded-[var(--radius-sm)] bg-[var(--ink-soft)] p-1"
           aria-label="Primary"
         >
           {links.map((link) => {
@@ -37,7 +37,7 @@ export function AppNav({ user }: { user: UserMenuProps }) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`rounded-[calc(var(--radius-sm)-1px)] px-3.5 py-[0.4rem] text-[0.9375rem] font-medium transition-colors ${
+                className={`rounded-[calc(var(--radius-sm)-1px)] px-4 py-[0.5rem] text-base font-medium transition-colors ${
                   active
                     ? "bg-[var(--surface-2)] text-[var(--ink)] shadow-[inset_0_0_0_1px_var(--ink-soft)]"
                     : "text-[var(--muted)] hover:text-[var(--ink)]"

@@ -60,7 +60,7 @@ export default async function AskPage() {
   }
 
   return (
-    <main className="-mx-4 -my-10 flex h-[calc(100dvh-3.75rem)] flex-col px-4 sm:-my-12">
+    <main className="-mx-4 -my-10 flex h-[calc(100dvh-4.5rem)] flex-col px-4 sm:-my-12">
       <AskForm suggestions={suggestions} tourLabel={tourLabel} />
     </main>
   );

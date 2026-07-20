@@ -22,7 +22,7 @@ export default async function AccountSettingsPage() {
           Account
         </h1>
         <p className="mt-2 text-[var(--muted)]">
-          Update your name and email for Loadin.
+          Update your name and email for Tourbase.
         </p>
       </div>
 

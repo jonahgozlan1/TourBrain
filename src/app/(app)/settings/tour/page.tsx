@@ -20,7 +20,7 @@ export default async function TourSettingsPage() {
           Tour settings
         </h1>
         <p className="mt-2 text-[var(--muted)]">
-          Edit the tour you&apos;re managing in Loadin.
+          Edit the tour you&apos;re managing in Tourbase.
         </p>
       </div>
 

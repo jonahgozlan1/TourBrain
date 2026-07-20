@@ -6,7 +6,7 @@ export default function HelpPage() {
           Help
         </h1>
         <p className="mt-2 max-w-lg text-[var(--muted)]">
-          Loadin turns messy tour docs into a clean show dashboard — and shows
+          Tourbase turns messy tour docs into a clean show dashboard — and shows
           you what&apos;s still missing.
         </p>
       </div>
@@ -30,10 +30,10 @@ export default function HelpPage() {
       <p className="text-sm text-[var(--muted)]">
         Questions? Email{" "}
         <a
-          href="mailto:hello@loadin.app"
+          href="mailto:hello@tourbase.app"
           className="text-[var(--ink)] underline-offset-2 hover:underline"
         >
-          hello@loadin.app
+          hello@tourbase.app
         </a>
         .
       </p>

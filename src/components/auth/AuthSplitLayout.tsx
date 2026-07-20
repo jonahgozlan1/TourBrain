@@ -82,9 +82,9 @@ export function AuthSplitLayout({
               href="/"
               className="inline-block font-display text-2xl text-[var(--ink)]"
             >
-              Loadin
+              Tourbase
             </Link>
-            <h1 className="mt-10 font-display text-4xl text-[var(--ink)] sm:text-[2.75rem] sm:leading-[1.1]">
+            <h1 className="mt-8 font-display text-2xl tracking-tight text-[var(--ink)] sm:text-[1.75rem]">
               {title}
             </h1>
           </div>

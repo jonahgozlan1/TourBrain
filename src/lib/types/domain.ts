@@ -1,4 +1,4 @@
-/** Domain types for Loadin — mirrors Supabase schema, used by UI + extraction. */
+/** Domain types for Tourbase — mirrors Supabase schema, used by UI + extraction. */
 
 export type ShowStatus = "draft" | "confirmed" | "cancelled" | "completed";
 

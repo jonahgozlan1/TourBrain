@@ -1,4 +1,4 @@
--- Loadin initial schema
+-- Tourbase initial schema
 -- Source of truth: structured tour data (AI extracts into these tables)
 
 create extension if not exists "pgcrypto";

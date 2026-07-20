@@ -30,7 +30,7 @@ export default async function ImportPage() {
           Import information
         </h1>
         <p className="mt-3 max-w-lg text-base leading-relaxed text-[var(--muted)] sm:text-lg sm:font-light">
-          Upload contracts, travel, or hotels. Loadin extracts structured
+          Upload contracts, travel, or hotels. Tourbase extracts structured
           fields &amp; you review before anything is saved.
         </p>
       </div>

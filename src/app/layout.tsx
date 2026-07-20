@@ -13,10 +13,28 @@ const body = Source_Sans_3({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_APP_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  title: "Loadin",
+  metadataBase: new URL(siteUrl),
+  title: "Tourbase",
   description:
-    "Turn messy tour documents into a clean, searchable show database.",
+    "Messy tour docs become a clean show list. For artists and tour managers.",
+  openGraph: {
+    title: "Tourbase",
+    description: "Messy tour docs become a clean show list.",
+    type: "website",
+    siteName: "Tourbase",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tourbase",
+    description: "Messy tour docs become a clean show list.",
+  },
 };
 
 export default function RootLayout({

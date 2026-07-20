@@ -59,7 +59,7 @@ export function UserMenu({ name, email, tourName }: UserMenuProps) {
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--surface-2)] text-xs font-semibold tracking-wide text-[var(--ink)] ring-1 ring-[var(--ink-soft)] transition-colors hover:bg-[var(--border)]"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--surface-2)] text-sm font-semibold tracking-wide text-[var(--ink)] ring-1 ring-[var(--ink-soft)] transition-colors hover:bg-[var(--border)]"
       >
         {initials}
       </button>
@@ -67,7 +67,7 @@ export function UserMenu({ name, email, tourName }: UserMenuProps) {
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 z-50 mt-3.5 w-52 overflow-hidden rounded-[var(--radius-lg)] bg-[var(--surface)] py-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)] ring-1 ring-[var(--ink-soft)]"
+          className="force-dark absolute right-0 z-50 mt-3.5 w-52 overflow-hidden rounded-[var(--radius-lg)] bg-[var(--surface)] py-2 shadow-[0_16px_48px_rgba(0,0,0,0.45)] ring-1 ring-[var(--ink-soft)]"
         >
           <div className="px-4 pb-3.5 pt-2.5">
             <p className="truncate text-base font-semibold text-[var(--ink)]">

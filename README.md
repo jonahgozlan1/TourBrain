@@ -1,4 +1,4 @@
-# Loadin
+# Tourbase
 
 Turn messy tour documents into a clean, searchable show database.
 
@@ -6,7 +6,7 @@ Turn messy tour documents into a clean, searchable show database.
 
 ## Product wedge
 
-Not another full tour OS (Roadcase / ABOSS). Loadin is the **ingestion layer**:
+Not another full tour OS (Roadcase / ABOSS). Tourbase is the **ingestion layer**:
 
 ```text
 PDFs / emails / notes
