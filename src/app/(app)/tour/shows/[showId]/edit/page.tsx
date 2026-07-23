@@ -15,7 +15,7 @@ export default async function EditShowPage({ params }: Props) {
   const label = show.city ?? "this show";
 
   return (
-    <main className="space-y-8">
+    <main className="min-w-0 space-y-8">
       <div>
         <p className="text-sm text-[var(--muted)]">
           {show.city ?? "Untitled show"}

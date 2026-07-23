@@ -18,7 +18,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
 
   return (
     <form
-      className="space-y-4"
+      className="min-w-0 space-y-4"
       action={(formData) => {
         setError(null);
         startTransition(async () => {
@@ -32,7 +32,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
       <input type="hidden" name="tourId" value={tourId} />
       {show ? <input type="hidden" name="showId" value={show.id} /> : null}
 
-      <label className="block space-y-1.5">
+      <label className="block min-w-0 space-y-1.5">
         <span className="text-sm text-[var(--muted)]">Date</span>
         <input
           name="date"
@@ -43,8 +43,8 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
         />
       </label>
 
-      <div className="grid grid-cols-2 gap-3">
-        <label className="block space-y-1.5">
+      <div className="grid min-w-0 grid-cols-2 gap-3 [&>*]:min-w-0">
+        <label className="block min-w-0 space-y-1.5">
           <span className="text-sm text-[var(--muted)]">City</span>
           <input
             name="city"
@@ -53,7 +53,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
             placeholder="Los Angeles"
           />
         </label>
-        <label className="block space-y-1.5">
+        <label className="block min-w-0 space-y-1.5">
           <span className="text-sm text-[var(--muted)]">Country</span>
           <input
             name="country"
@@ -98,7 +98,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
         </select>
       </label>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 [&>*]:min-w-0">
         {(
           [
             ["loadInTime", "Load-in", show?.loadInTime],
@@ -108,7 +108,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
             ["curfew", "Curfew", show?.curfew],
           ] as const
         ).map(([name, label, value]) => (
-          <label key={name} className="block space-y-1.5">
+          <label key={name} className="block min-w-0 space-y-1.5">
             <span className="text-sm text-[var(--muted)]">{label}</span>
             <input
               name={name}
