@@ -38,7 +38,7 @@ export function DocumentList({ documents }: { documents: Document[] }) {
           <li key={doc.id}>
             <Link
               href={href}
-              className="-mx-2 flex items-baseline justify-between gap-4 rounded-[var(--radius-sm)] px-2 py-3.5 transition-colors hover:bg-[var(--ink-softer)]"
+              className="-mx-2 flex items-center justify-between gap-4 rounded-[var(--radius-sm)] px-2 py-3.5 transition-colors hover:bg-[var(--ink-softer)]"
             >
               <div className="min-w-0">
                 <p className="truncate font-medium text-[var(--ink)]">
@@ -50,7 +50,7 @@ export function DocumentList({ documents }: { documents: Document[] }) {
                 </p>
               </div>
               <span
-                className={`shrink-0 text-xs ${
+                className={`shrink-0 text-sm ${
                   doc.extractionStatus === "failed"
                     ? "text-[var(--danger)]"
                     : doc.extractionStatus === "ready_for_review"

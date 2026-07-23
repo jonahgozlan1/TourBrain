@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { withSignedDocumentUrls } from "@/lib/documents/signedUrl";
 import {
   mapDocument,
   mapShow,
@@ -132,13 +133,18 @@ export async function getShowDetail(
     })
     .filter((c): c is ContactRow => Boolean(c));
 
-  return mapShowDetail({
+  const detail = mapShowDetail({
     show: showRow,
     contacts,
     travel: (travelRes.data ?? []) as TravelRow[],
     hotels: (hotelsRes.data ?? []) as HotelRow[],
     documents: (documentsRes.data ?? []) as DocumentRow[],
   });
+
+  return {
+    ...detail,
+    documents: await withSignedDocumentUrls(supabase, detail.documents),
+  };
 }
 
 export async function getShow(showId: string): Promise<Show | null> {

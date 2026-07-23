@@ -7,6 +7,7 @@ import { ShowDocuments } from "@/components/show/ShowDocuments";
 import { ShowGaps } from "@/components/show/ShowGaps";
 import { ShowHeader } from "@/components/show/ShowHeader";
 import { ShowHotel } from "@/components/show/ShowHotel";
+import { ShowNotes } from "@/components/show/ShowNotes";
 import { ShowTimeline } from "@/components/show/ShowTimeline";
 import { ShowTravel } from "@/components/show/ShowTravel";
 import { getShowDetailGaps } from "@/lib/gaps/showGaps";
@@ -49,6 +50,12 @@ export default async function ShowPage({ params }: Props) {
           contacts={show.contacts}
           action={<AddContactForm showId={show.id} />}
         />
+
+        {show.notes ? (
+          <div className="sm:col-span-2">
+            <ShowNotes notes={show.notes} />
+          </div>
+        ) : null}
 
         <div className="sm:col-span-2">
           <ShowDocuments documents={show.documents} />

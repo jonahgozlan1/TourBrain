@@ -50,7 +50,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
             name="city"
             defaultValue={show?.city ?? ""}
             className="field"
-            placeholder="Berlin"
+            placeholder="Los Angeles"
           />
         </label>
         <label className="block space-y-1.5">
@@ -59,7 +59,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
             name="country"
             defaultValue={show?.country ?? ""}
             className="field"
-            placeholder="Germany"
+            placeholder="USA"
           />
         </label>
       </div>
@@ -70,7 +70,7 @@ export function ShowForm({ tourId, show, cancelHref }: ShowFormProps) {
           name="venue"
           defaultValue={show?.venue ?? ""}
           className="field"
-          placeholder="Lido Berlin"
+          placeholder="The Roxy"
         />
       </label>
 
