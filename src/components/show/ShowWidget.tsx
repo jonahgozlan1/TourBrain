@@ -11,7 +11,7 @@ export function ShowWidget({
 }) {
   return (
     <section
-      className={`flex h-full flex-col ${accent ? "soft-panel-accent" : "soft-panel"}`}
+      className={`flex h-full min-w-0 flex-col overflow-hidden ${accent ? "soft-panel-accent" : "soft-panel"}`}
     >
       <h2
         className={`section-label !mt-0 !mb-3 ${accent ? "!text-[var(--accent)]" : ""}`}
