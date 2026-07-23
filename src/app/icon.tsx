@@ -16,27 +16,11 @@ export default function Icon() {
           background: "#141414",
         }}
       >
-        <svg
-          width="26"
-          height="26"
-          viewBox="0 0 32 32"
-          fill="none"
-        >
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
           <path
-            d="M8 9h16"
-            stroke="#f5f5f5"
-            strokeWidth="2.75"
-            strokeLinecap="round"
+            d="M10.5 7.5c-.6 0-1 .4-1 1v15c0 .8.9 1.3 1.6.8l12.5-7.5c.6-.4.6-1.2 0-1.6l-12.5-7.7c-.3-.2-.7-.3-1.1-.3Z"
+            fill="#2dd4bf"
           />
-          <path
-            d="M16 9v15"
-            stroke="#f5f5f5"
-            strokeWidth="2.75"
-            strokeLinecap="round"
-          />
-          <circle cx="8" cy="9" r="2.35" fill="#f5f5f5" />
-          <circle cx="16" cy="9" r="2.35" fill="#2dd4bf" />
-          <circle cx="24" cy="9" r="2.35" fill="#f5f5f5" />
         </svg>
       </div>
     ),
