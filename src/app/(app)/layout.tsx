@@ -32,7 +32,7 @@ export default async function AppLayout({
   return (
     <div className="app-atmosphere flex min-h-full flex-1 flex-col">
       <AppNav user={{ name, email, tourName }} />
-      <div className="mx-auto w-full max-w-3xl flex-1 px-4 py-10 sm:py-12">
+      <div className="mx-auto w-full max-w-3xl flex-1 overflow-x-hidden px-4 py-10 sm:py-12">
         {children}
       </div>
     </div>

@@ -1,3 +1,16 @@
+/** Shorten long filenames for narrow layouts; keeps extension when possible. */
+export function formatFileName(name: string, maxLength = 40): string {
+  if (name.length <= maxLength) return name;
+
+  const dotIndex = name.lastIndexOf(".");
+  const ext = dotIndex > 0 ? name.slice(dotIndex) : "";
+  const base = ext ? name.slice(0, dotIndex) : name;
+  const budget = maxLength - ext.length - 1;
+
+  if (budget <= 4) return `${name.slice(0, maxLength - 1)}…`;
+  return `${base.slice(0, budget)}…${ext}`;
+}
+
 /** Display helpers for show dates and local wall-clock times. */
 
 export function formatShowDate(isoDate: string): string {

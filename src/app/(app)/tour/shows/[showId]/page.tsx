@@ -25,11 +25,11 @@ export default async function ShowPage({ params }: Props) {
   const gaps = getShowDetailGaps(show);
 
   return (
-    <main className="space-y-6">
+    <main className="min-w-0 space-y-6">
       <ShowHeader show={show} />
 
-      <div className="grid min-w-0 gap-3 sm:grid-cols-2 sm:gap-3.5">
-        <div className="sm:col-span-2">
+      <div className="grid min-w-0 gap-3 [&>*]:min-w-0 sm:grid-cols-2 sm:gap-3.5">
+        <div className="min-w-0 sm:col-span-2">
           <ShowGaps gaps={gaps} />
         </div>
 
@@ -52,12 +52,12 @@ export default async function ShowPage({ params }: Props) {
         />
 
         {show.notes ? (
-          <div className="sm:col-span-2">
+          <div className="min-w-0 sm:col-span-2">
             <ShowNotes notes={show.notes} />
           </div>
         ) : null}
 
-        <div className="sm:col-span-2">
+        <div className="min-w-0 sm:col-span-2">
           <ShowDocuments documents={show.documents} />
         </div>
       </div>
