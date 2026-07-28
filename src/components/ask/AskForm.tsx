@@ -137,7 +137,9 @@ export function AskForm({
                 <div key={message.id} className="flex justify-start">
                   <div className="max-w-[92%] space-y-3">
                     {message.pending ? (
-                      <p className="text-sm text-[var(--muted)]">Looking up…</p>
+                      <p className="animate-pulse text-sm text-[var(--muted)]">
+                        Looking up…
+                      </p>
                     ) : message.error ? (
                       <p className="text-sm text-[var(--danger)]" role="alert">
                         {message.error}
