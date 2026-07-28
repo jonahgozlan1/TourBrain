@@ -2,10 +2,12 @@ import { createClient } from "@/lib/supabase/server";
 import { withSignedDocumentUrls } from "@/lib/documents/signedUrl";
 import {
   mapDocument,
+  mapHotel,
   mapShow,
   mapShowDetail,
   mapTour,
   mapTourWithShows,
+  mapTravel,
   type ContactRow,
   type DocumentRow,
   type HotelRow,
@@ -13,7 +15,20 @@ import {
   type TourRow,
   type TravelRow,
 } from "@/lib/db/mappers";
-import type { Document, Show, ShowDetail, Tour, TourWithShows } from "@/lib/types/domain";
+import type {
+  Document,
+  Hotel,
+  Show,
+  ShowDetail,
+  Tour,
+  TourWithShows,
+  Travel,
+} from "@/lib/types/domain";
+
+export type ShowTravelAndHotels = {
+  travelByShow: Map<string, Travel[]>;
+  hotelsByShow: Map<string, Hotel[]>;
+};
 
 export async function requireUser() {
   const supabase = await createClient();
@@ -77,6 +92,43 @@ export async function getPrimaryTour(): Promise<TourWithShows | null> {
   if (showsError) throw showsError;
 
   return mapTourWithShows(tour as TourRow, (shows ?? []) as ShowRow[]);
+}
+
+export async function getTravelAndHotelsByShowId(
+  showIds: string[],
+): Promise<ShowTravelAndHotels> {
+  const travelByShow = new Map<string, Travel[]>();
+  const hotelsByShow = new Map<string, Hotel[]>();
+
+  if (showIds.length === 0) {
+    return { travelByShow, hotelsByShow };
+  }
+
+  const { supabase } = await ensureProfile();
+
+  const [travelRes, hotelsRes] = await Promise.all([
+    supabase.from("travel").select("*").in("show_id", showIds),
+    supabase.from("hotels").select("*").in("show_id", showIds),
+  ]);
+
+  if (travelRes.error) throw travelRes.error;
+  if (hotelsRes.error) throw hotelsRes.error;
+
+  for (const row of (travelRes.data ?? []) as TravelRow[]) {
+    const mapped = mapTravel(row);
+    const list = travelByShow.get(mapped.showId) ?? [];
+    list.push(mapped);
+    travelByShow.set(mapped.showId, list);
+  }
+
+  for (const row of (hotelsRes.data ?? []) as HotelRow[]) {
+    const mapped = mapHotel(row);
+    const list = hotelsByShow.get(mapped.showId) ?? [];
+    list.push(mapped);
+    hotelsByShow.set(mapped.showId, list);
+  }
+
+  return { travelByShow, hotelsByShow };
 }
 
 export async function getTourById(tourId: string): Promise<Tour | null> {

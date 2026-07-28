@@ -1,15 +1,26 @@
 import Link from "next/link";
+import type { ShowTravelAndHotels } from "@/lib/db/queries";
 import type { Show } from "@/lib/types/domain";
 import { formatShortDate, formatTime } from "@/lib/format";
-import { getShowGaps } from "@/lib/gaps/showGaps";
+import { getShowGapsWithRelated } from "@/lib/gaps/showGaps";
 
-export function ShowList({ shows }: { shows: Show[] }) {
+export function ShowList({
+  shows,
+  travelByShow,
+  hotelsByShow,
+}: {
+  shows: Show[];
+} & ShowTravelAndHotels) {
   const sorted = [...shows].sort((a, b) => a.date.localeCompare(b.date));
 
   return (
     <ul className="space-y-2.5">
       {sorted.map((show) => {
-        const gapCount = getShowGaps(show).length;
+        const gapCount = getShowGapsWithRelated(
+          show,
+          travelByShow,
+          hotelsByShow,
+        ).length;
         return (
           <li key={show.id}>
             <Link

@@ -51,3 +51,15 @@ export function getShowGaps(
 export function getShowDetailGaps(show: ShowDetail): ShowGap[] {
   return getShowGaps(show, show.travel, show.hotels);
 }
+
+export function getShowGapsWithRelated(
+  show: Show,
+  travelByShow: Map<string, Travel[]>,
+  hotelsByShow: Map<string, Hotel[]>,
+): ShowGap[] {
+  return getShowGaps(
+    show,
+    travelByShow.get(show.id) ?? [],
+    hotelsByShow.get(show.id) ?? [],
+  );
+}

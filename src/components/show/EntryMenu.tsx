@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
+import { createPortal } from "react-dom";
 import {
   deleteHotelAction,
   deleteTravelAction,
@@ -34,35 +35,66 @@ function entryLabel(props: EntryMenuProps): string {
   return props.entry.name;
 }
 
+type MenuPosition = { top: number; right: number };
+
+function getMenuPosition(button: HTMLButtonElement): MenuPosition {
+  const rect = button.getBoundingClientRect();
+  return {
+    top: rect.bottom + 4,
+    right: window.innerWidth - rect.right,
+  };
+}
+
 export function EntryMenu(props: EntryMenuProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [menuPosition, setMenuPosition] = useState<MenuPosition | null>(null);
   const [panel, setPanel] = useState<"edit" | "delete" | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
-  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const label = entryLabel(props);
   const showId = props.kind === "contact" ? props.showId : props.entry.showId;
 
   useEffect(() => {
     if (!menuOpen) return;
 
+    function updatePosition() {
+      if (!buttonRef.current) return;
+      setMenuPosition(getMenuPosition(buttonRef.current));
+    }
+
     function onPointerDown(e: MouseEvent) {
-      if (!rootRef.current?.contains(e.target as Node)) {
-        setMenuOpen(false);
+      const target = e.target as Node;
+      if (
+        !buttonRef.current?.contains(target) &&
+        !menuRef.current?.contains(target)
+      ) {
+        closeMenu();
       }
     }
 
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setMenuOpen(false);
+      if (e.key === "Escape") closeMenu();
     }
 
+    updatePosition();
+    window.addEventListener("scroll", updatePosition, true);
+    window.addEventListener("resize", updatePosition);
     document.addEventListener("mousedown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
     return () => {
+      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", updatePosition);
       document.removeEventListener("mousedown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
   }, [menuOpen]);
+
+  function closeMenu() {
+    setMenuOpen(false);
+    setMenuPosition(null);
+  }
 
   function closePanel() {
     setPanel(null);
@@ -70,47 +102,72 @@ export function EntryMenu(props: EntryMenuProps) {
   }
 
   function openPanel(next: "edit" | "delete") {
-    setMenuOpen(false);
+    closeMenu();
     setError(null);
     setPanel(next);
   }
 
+  function toggleMenu() {
+    if (menuOpen) {
+      closeMenu();
+      return;
+    }
+    if (buttonRef.current) {
+      setMenuPosition(getMenuPosition(buttonRef.current));
+    }
+    setMenuOpen(true);
+  }
+
+  const menuDropdown =
+    menuOpen && menuPosition
+      ? createPortal(
+          <div
+            ref={menuRef}
+            role="menu"
+            style={{
+              position: "fixed",
+              top: menuPosition.top,
+              right: menuPosition.right,
+              zIndex: 50,
+            }}
+            className="min-w-[8.5rem] overflow-hidden rounded-[var(--radius-md)] bg-[var(--surface)] py-1 shadow-[0_12px_32px_rgba(0,0,0,0.4)] ring-1 ring-[var(--ink-soft)]"
+          >
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => openPanel("edit")}
+              className="block w-full px-3.5 py-2 text-left text-sm font-medium text-[var(--ink)] transition-colors hover:bg-[var(--ink-soft)]"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => openPanel("delete")}
+              className="block w-full px-3.5 py-2 text-left text-sm font-medium text-[var(--danger)] transition-colors hover:bg-[var(--ink-soft)]"
+            >
+              Delete
+            </button>
+          </div>,
+          document.body,
+        )
+      : null;
+
   return (
-    <div ref={rootRef} className="relative shrink-0">
+    <div className="relative shrink-0">
       <button
+        ref={buttonRef}
         type="button"
         aria-haspopup="menu"
         aria-expanded={menuOpen}
         aria-label={`Actions for ${label}`}
-        onClick={() => setMenuOpen((v) => !v)}
+        onClick={toggleMenu}
         className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--muted)] transition-colors hover:bg-[var(--ink-soft)] hover:text-[var(--ink)]"
       >
         <MoreIcon />
       </button>
 
-      {menuOpen ? (
-        <div
-          role="menu"
-          className="absolute right-0 z-50 mt-1 min-w-[8.5rem] overflow-hidden rounded-[var(--radius-md)] bg-[var(--surface)] py-1 shadow-[0_12px_32px_rgba(0,0,0,0.4)] ring-1 ring-[var(--ink-soft)]"
-        >
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => openPanel("edit")}
-            className="block w-full px-3.5 py-2 text-left text-sm font-medium text-[var(--ink)] transition-colors hover:bg-[var(--ink-soft)]"
-          >
-            Edit
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => openPanel("delete")}
-            className="block w-full px-3.5 py-2 text-left text-sm font-medium text-[var(--danger)] transition-colors hover:bg-[var(--ink-soft)]"
-          >
-            Delete
-          </button>
-        </div>
-      ) : null}
+      {menuDropdown}
 
       <Modal
         open={panel === "edit"}

@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ShowList } from "@/components/tour/ShowList";
-import { getPrimaryTour } from "@/lib/db/queries";
-import { getShowGaps } from "@/lib/gaps/showGaps";
+import {
+  getPrimaryTour,
+  getTravelAndHotelsByShowId,
+} from "@/lib/db/queries";
+import { getShowGapsWithRelated } from "@/lib/gaps/showGaps";
 import { SchemaSetupNotice } from "@/components/setup/SchemaSetupNotice";
 
 export default async function TourDashboardPage() {
@@ -25,7 +28,13 @@ export default async function TourDashboardPage() {
     redirect("/tour/new");
   }
 
-  const gapShows = tour.shows.filter((s) => getShowGaps(s).length > 0).length;
+  const { travelByShow, hotelsByShow } = await getTravelAndHotelsByShowId(
+    tour.shows.map((show) => show.id),
+  );
+
+  const gapShows = tour.shows.filter(
+    (show) => getShowGapsWithRelated(show, travelByShow, hotelsByShow).length > 0,
+  ).length;
 
   return (
     <main>
@@ -58,7 +67,8 @@ export default async function TourDashboardPage() {
 
       {gapShows > 0 ? (
         <p className="mt-5 text-sm font-medium text-[var(--accent)]">
-          {gapShows} show{gapShows === 1 ? "" : "s"} still need information
+          {gapShows} show{gapShows === 1 ? "" : "s"} still{" "}
+          {gapShows === 1 ? "needs" : "need"} information
         </p>
       ) : null}
 
@@ -82,7 +92,11 @@ export default async function TourDashboardPage() {
             </div>
           </div>
         ) : (
-          <ShowList shows={tour.shows} />
+          <ShowList
+            shows={tour.shows}
+            travelByShow={travelByShow}
+            hotelsByShow={hotelsByShow}
+          />
         )}
       </section>
     </main>
