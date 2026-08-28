@@ -224,10 +224,10 @@ export default async function HomePage() {
 
           <section className="fade-up-delay-2 flex flex-col items-center pb-8 pt-4">
             <p className="font-display text-3xl tracking-tight text-[var(--ink)] sm:text-4xl">
-              Upload a doc. See what&apos;s still missing.
+              Stop digging through PDFs.
             </p>
             <p className="mt-3 max-w-sm text-base text-[var(--muted)] sm:font-light">
-              Start a tour and drop in your first contract or travel doc.
+              Upload a contract or travel doc and see what&apos;s still missing.
             </p>
             <Link
               href="/auth/signup"
