@@ -72,8 +72,10 @@ export default async function HomePage() {
       <div aria-hidden className="brand-atmosphere" />
       <div className="relative mx-auto flex w-full max-w-3xl flex-1 flex-col items-center px-6 py-12 text-center sm:py-16">
         <div className="fade-up flex flex-col items-center">
-          <h1 className="max-w-md font-display text-5xl leading-[1.05] tracking-tight text-[var(--ink)] sm:text-6xl sm:leading-[1.02]">
-            Messy tour docs become a clean show list.
+          <h1 className="max-w-xl font-display text-4xl leading-[1.06] tracking-tight text-[var(--ink)] sm:text-5xl sm:leading-[1.04]">
+            All your show details,
+            <br />
+            <span className="text-[var(--accent)]">in one place.</span>
           </h1>
           <p className="mt-4 text-sm text-[var(--muted)] sm:text-base sm:font-light">
             For artists and tour managers.
@@ -222,10 +224,10 @@ export default async function HomePage() {
 
           <section className="fade-up-delay-2 flex flex-col items-center pb-8 pt-4">
             <p className="font-display text-3xl tracking-tight text-[var(--ink)] sm:text-4xl">
-              Ready to clear the inbox?
+              Upload a doc. See what&apos;s still missing.
             </p>
             <p className="mt-3 max-w-sm text-base text-[var(--muted)] sm:font-light">
-              Start a tour, import a doc, and see what&apos;s still missing.
+              Start a tour and drop in your first contract or travel doc.
             </p>
             <Link
               href="/auth/signup"
