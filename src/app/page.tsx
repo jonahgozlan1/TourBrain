@@ -223,7 +223,7 @@ export default async function HomePage() {
           </div>
 
           <section className="fade-up-delay-2 flex flex-col items-center pb-8 pt-4">
-            <p className="font-display text-3xl tracking-tight text-[var(--ink)] sm:text-4xl">
+            <p className="font-display text-2xl tracking-tight text-[var(--ink)] sm:text-4xl">
               Stop digging through PDFs.
             </p>
             <p className="mt-3 max-w-sm text-base text-[var(--muted)] sm:font-light">
